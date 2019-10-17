@@ -10,7 +10,11 @@ class App extends Component {
       distance: '',
       gender: 'female',
       age: '',
-      renderLoginForm: false
+      renderLoginForm: false,
+      authenticated: false,
+      email: '',
+      password: '',
+      message: ''
     }
   }
 
@@ -20,12 +24,25 @@ class App extends Component {
     })
   }
 
+  async onLogin(e) {
+    e.preventDefault();
+    let resp = await authenticate(this.state.email, this.state.password)
+    if (resp.authenticated === true) {
+      this.setState({ authenticated: true });
+    } else {
+      this.setState({ message: resp.message, renderLoginFrom: false})
+    }
+  }
+
   render() {
     let renderLogin
 
     if (this.state.renderLoginForm === true) {
       renderLogin = (
-        <LoginForm />
+        <LoginForm 
+          loginHandler={this.onLogin.bind(this)}
+          inputChangeHandler={this.onChange.bind(this)}
+        />
       )
     } else {
       renderLogin = (
