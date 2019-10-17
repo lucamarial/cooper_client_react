@@ -1,25 +1,37 @@
 import React, { Component } from 'react'
+import DisplayCooperResult from './Components/DisplayCooperResult';
+import InputFields from './Components/InputFields';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      distance: '',
+      gender: 'female',
+      age: ''
+    }
+  }
+
+  onChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  }
+
   render() {
     return (
       <div>
-        <div>
-          <label>Distance</label>
-          <input id="distance"></input>
-        </div>
+        <InputFields
+          inputChangeHandler={this.onChange.bind(this)}
+        />
 
-        <select id="gender">
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-        </select>
-
-        <div>
-          <label>Age</label>
-          <input id="age"></input>
-        </div>
+        <DisplayCooperResult
+          distance = { this.state.distance }
+          gender = { this.state.gender }
+          age = { this.state.age }
+        />
       </div>
-    )
+    );
   }
 }
 

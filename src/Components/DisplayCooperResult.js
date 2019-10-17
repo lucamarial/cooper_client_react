@@ -12,7 +12,7 @@ class DisplayCooperResult extends Component {
     if (this.props.age !== '' && this.props.distance !== '') {
       results =
         <div>
-          <p>{this.props.age} y/o {this.props.gener} running {this.props.distance} meters.</p>
+          <p>{this.props.age} y/o {this.props.gender} running {this.props.distance} meters.</p>
           <p>Result: {this.calculate()}</p>
         </div>
     }
