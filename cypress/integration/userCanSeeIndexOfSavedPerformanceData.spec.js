@@ -1,6 +1,6 @@
-descibe('User attempts to view his/her performance data', () => {
+describe('User attempts to view his/her performance data', () => {
 
-  BeforeUnloadEvent(function() {
+  before(function() {
     cy.visit('http://localhost:3001');
     cy.server()
     cy.route({

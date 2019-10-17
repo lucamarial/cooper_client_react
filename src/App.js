@@ -15,7 +15,9 @@ class App extends Component {
     email: '',
     password: '',
     message: '',
-    entrySaved: false
+    entrySaved: false,
+    renderIndex: false,
+    updatedIndex: false
   }
 
   onChange(event) {
@@ -58,7 +60,7 @@ class App extends Component {
           <>
             <DisplayPerformanceData
               updateIndex = { this.state.updateIndex }
-              idnexUpdated = { this.indexUpdated.bind(this) }
+              indexUpdated = { this.indexUpdated.bind(this) }
             />
             <button id="show-index" onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
           </>

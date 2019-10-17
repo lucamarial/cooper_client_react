@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { getData } from '../Modules/PerformanceData';
 
 class DisplayPerformanceData extends Component {
-  state = {
-    performanceData: null
+  constructor(props) {
+    super(props)
+    this.state = {
+      performanceData: null
   }
+}
 
   componentDidMount() {
     this.getPerformanceData()
