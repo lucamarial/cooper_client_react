@@ -36,7 +36,11 @@ class App extends Component {
   }
 
   entryHandler() {
-    this.setState({ entrySaved: true });
+    this.setState({ entrySaved: true, updateIndex: true });
+  }
+
+  indexUpdated() {
+    this.setState({ updateIndex: false });
   }
 
   render() {

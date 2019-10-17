@@ -13,8 +13,9 @@ const saveData = async (result) => {
   };
   const path = apiUrl + '/performance_data';
   return new Promise((resolve, reject) => {
-    axios.post(path, {
-      perfomance_data: { data: { message: result }}
+    axios
+      .post(path, {
+        perfomance_data: { data: { message: result }}
     }, {
       headers: headers
     })
@@ -25,4 +26,25 @@ const saveData = async (result) => {
   });
 };
 
-export { saveData }
+const getData = async () => {
+  let headers = await sessionStorage.getItem("credentials");
+  headers = JSON.parse(headers);
+  headers = {
+    ...headers,
+    "Content-type": "application/json",
+    Accept: "application/json"
+  };
+  const path = apiUrl + '/performance_data';
+  return new Promise((resolve, reject) => {
+    axios
+      .get(path, {
+        headers: headers
+      })
+      .then(response => {
+        storeAuthCredentials(response);
+        resolve(response);
+      });
+  });
+};
+
+export { getData, saveData }
