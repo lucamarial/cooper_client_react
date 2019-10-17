@@ -31,7 +31,7 @@ class App extends Component {
     if (resp.authenticated === true) {
       this.setState({ authenticated: true });
     } else {
-      this.setState({ message: resp.message, renderLoginFrom: false})
+      this.setState({ message: resp.message, renderLoginForm: false })
     }
   }
 
