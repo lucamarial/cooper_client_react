@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import DisplayCooperResult from './Components/DisplayCooperResult';
+import InputFields from './Components/InputFields';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      distance: '',
+      gender: 'female',
+      age: ''
+    }
+  }
+
+  onChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <InputFields
+          inputChangeHandler={this.onChange.bind(this)}
+        />
+
+        <DisplayCooperResult
+          distance = { this.state.distance }
+          gender = { this.state.gender }
+          age = { this.state.age }
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
