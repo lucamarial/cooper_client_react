@@ -3,21 +3,19 @@ import DisplayCooperResult from './Components/DisplayCooperResult';
 import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
+import DisplayPerformanceData from './Components/DisplayPerformanceData';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      distance: '',
-      gender: 'female',
-      age: '',
-      renderLoginForm: false,
-      authenticated: false,
-      email: '',
-      password: '',
-      message: '',
-      entrySaved: false
-    }
+  state = {
+    distance: '',
+    gender: 'female',
+    age: '',
+    renderLoginForm: false,
+    authenticated: false,
+    email: '',
+    password: '',
+    message: '',
+    entrySaved: false
   }
 
   onChange(event) {
@@ -51,9 +49,21 @@ class App extends Component {
       renderLogin = (
         <p>Hi {user}</p>
       )
-      performanceDataIndex = (
-        <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
-      )
+      if (this.state.renderIndex === true) {
+        performanceDataIndex = (
+          <>
+            <DisplayPerformanceData
+              updateIndex = { this.state.updateIndex }
+              idnexUpdated = { this.indexUpdated.bind(this) }
+            />
+            <button id="show-index" onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
+          </>
+        )
+      } else {
+        performanceDataIndex = (
+          <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
+        )
+      }
     } else { 
       if (this.state.renderLoginForm === true) {
         renderLogin = (
