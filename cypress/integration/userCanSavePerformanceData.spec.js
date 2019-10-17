@@ -2,6 +2,7 @@ describe('User attempts save data', () => {
 
   beforeEach(function() {
     cy.visit('http://localhost:3001');
+    cy.server();
     cy.route({
       method: 'POST',
       url: 'http://localhost:3000/api/v1/performance_data',
