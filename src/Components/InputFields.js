@@ -1,14 +1,15 @@
 import React from 'react';
+import { Input } from 'semantic-ui-react' 
 
 const InputFields = (props) => {
   return (
   <>
-    <div>
-      <input id="distance" placeholder="Distance" onChange={props.inputChangeHandler}></input>
+    <div id="input">
+      <Input icon="users" iconPosition="left" id="distance" placeholder="Distance" onChange={props.inputChangeHandler}/>
     </div>
 
-    <div>
-      <input id="age" placeholder="Age" onChange={props.inputChangeHandler}></input>
+    <div id="input">
+      <Input icon="users" iconPosition="left" id="age" placeholder="Age" onChange={props.inputChangeHandler}/>
     </div>
 
     <select id="gender" onChange={props.inputChangeHandler}>

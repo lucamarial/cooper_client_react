@@ -17,8 +17,12 @@ code {
   color: #545B5A!important;
 }
 
-i.icon {
+#heart {
   font-size: 1.5em!important;
+}
+
+#input {
+  margin: 5px;
 }
 
 /* div.column {
@@ -45,10 +49,11 @@ i.icon {
   color: #444;
   line-height: 1;
   padding: .6em 1.4em .5em .8em;
-  width: 70%;
+  width: 86.8%;
   max-width: 100%; 
   box-sizing: border-box;
   margin-top: 10px;
+  margin-left: 5px;
   border: 1px solid #aaa;
   box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
   border-radius: .5em;

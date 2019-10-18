@@ -121,7 +121,7 @@ class App extends Component {
                 </Card.Content>
 
                 <Card.Content>
-                  <Icon name='heartbeat' />
+                  <Icon id="heart" name='heartbeat' />
                   <DisplayCooperResult
                     distance = { this.state.distance }
                     gender = { this.state.gender }
