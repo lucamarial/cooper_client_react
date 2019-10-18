@@ -108,48 +108,53 @@ class App extends Component {
         <Grid centered columns={2}>
           
           <Grid.Column>
-            <Card>
-              <Card.Content>
-                <Card.Header>Calculator</Card.Header>
-                <Card.Description>
-                  Input data and get your result!
-                </Card.Description>
-                <InputFields
-                  inputChangeHandler={this.onChange.bind(this)}
-                />
-              </Card.Content>
+            <Container id="container">
+              <Card>
+                <Card.Content>
+                  <Card.Header>Calculator</Card.Header>
+                  <Card.Description>
+                    Input data and get your result!
+                  </Card.Description>
+                  <InputFields
+                    inputChangeHandler={this.onChange.bind(this)}
+                  />
+                </Card.Content>
 
-              <Card.Content>
-                <Icon name='heartbeat' />
-                <DisplayCooperResult
-                  distance = { this.state.distance }
-                  gender = { this.state.gender }
-                  age = { this.state.age }
-                  authenticated={ this.state.authenticated }
-                  entrySaved = { this.state.entrySaved }
-                  entryHandler = { this.entryHandler.bind(this) }
-                />
-              </Card.Content>
-            </Card>
+                <Card.Content>
+                  <Icon name='heartbeat' />
+                  <DisplayCooperResult
+                    distance = { this.state.distance }
+                    gender = { this.state.gender }
+                    age = { this.state.age }
+                    authenticated={ this.state.authenticated }
+                    entrySaved = { this.state.entrySaved }
+                    entryHandler = { this.entryHandler.bind(this) }
+                  />
+                </Card.Content>
+              </Card>
+            </Container>
           </Grid.Column>
 
           <Grid.Column>
-            <Card>
-              <Card.Content>
-                <Card.Header>
-                  Past Results
-                </Card.Header>
-                <Card.Description>
-                  {performanceDataIndex}
-                </Card.Description>
-              </Card.Content>
-            </Card> 
+            <Container id="container">
+              <Card>
+                <Card.Content>
+                  <Card.Header>
+                    Past Results
+                  </Card.Header>
+                  <Card.Description>
+                    {performanceDataIndex}
+                  </Card.Description>
+                </Card.Content>
+              </Card> 
+            </Container>
           </Grid.Column>
+                  
+          </Grid>
+
         <div>
           { renderLogin }
         </div>
-          
-          </Grid>
       </Container>
     );
   }
