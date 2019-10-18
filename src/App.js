@@ -4,7 +4,14 @@ import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
 import DisplayPerformanceData from './Components/DisplayPerformanceData';
-
+import {
+  Container,
+  Grid,
+  Header,
+  Button,
+  Card,
+  Icon
+} from 'semantic-ui-react'
 class App extends Component {
   state = {
     distance: '',
@@ -83,32 +90,67 @@ class App extends Component {
       } else {
         renderLogin = (
           <>
-            <button id="login" onClick={ () => this.setState({ renderLoginForm: true }) }>Login</button>
-            <p>{this.state.message}</p>
+              <Button id="login" onClick={ () => this.setState({ renderLoginForm: true }) }>Login</Button>
+              <p>{this.state.message}</p>
           </>
         )
       }
     }
     
     return (
-      <>
-        <InputFields
-          inputChangeHandler={this.onChange.bind(this)}
-        />
+      <Container>
+        <Header
+          as="h1"
+          textAlign="center"
+        >
+          Cooper Test
+        </Header>
+        <Grid centered columns={2}>
+          
+          <Grid.Column>
+            <Card>
+              <Card.Content>
+                <Card.Header>Calculator</Card.Header>
+                <Card.Description>
+                  Input data and get your result!
+                </Card.Description>
+                <InputFields
+                  inputChangeHandler={this.onChange.bind(this)}
+                />
+              </Card.Content>
 
-        <DisplayCooperResult
-          distance = { this.state.distance }
-          gender = { this.state.gender }
-          age = { this.state.age }
-          authenticated={ this.state.authenticated }
-          entrySaved = { this.state.entrySaved }
-          entryHandler = { this.entryHandler.bind(this) }
-        />
-        {performanceDataIndex}
+              <Card.Content>
+                <Icon name='heartbeat' />
+                <DisplayCooperResult
+                  distance = { this.state.distance }
+                  gender = { this.state.gender }
+                  age = { this.state.age }
+                  authenticated={ this.state.authenticated }
+                  entrySaved = { this.state.entrySaved }
+                  entryHandler = { this.entryHandler.bind(this) }
+                />
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+
+          <Grid.Column>
+            <Card>
+              <Card.Content>
+                <Card.Header>
+                  Past Results
+                </Card.Header>
+                <Card.Description>
+                  {performanceDataIndex}
+                </Card.Description>
+              </Card.Content>
+            </Card> 
+          </Grid.Column>
         <div>
-        { renderLogin }
+          { renderLogin }
         </div>
-      </>
+          
+          </Grid>
+      </Container>
     );
   }
 }
