@@ -89,16 +89,16 @@ class App extends Component {
       if (this.state.renderResultChart === true) {
         renderChart = (
           <>
+            <Button id="show-chart" onClick={() => this.setState({ renderResultChart: false })}>Hide Chart</Button>
             <ResultChart
               updateResultChart = { this.state.updateResultChart }
               resultChartUpdated = { this.resultChartUpdated.bind(this) }
             />
-            <button id="show-chart" onClick={() => this.setState({ renderResultChart: false })}>Hide Chart</button>
           </>
         )
       } else {
         renderChart = (
-          <button id="show-chart" onClick={() => this.setState({ renderResultChart: true})}>Show Chart</button>
+          <Button id="show-chart" onClick={() => this.setState({ renderResultChart: true})}>Show Chart</Button>
         )
       }
     } else { 
@@ -182,29 +182,16 @@ class App extends Component {
               { renderLogin }
             </div>
           </Grid.Row>
-                  
+        <Container>
+          <Grid.Row>
+            {renderChart}  
+          </Grid.Row> 
+          </Container>
           </Grid>
-
       </Container>
-        <DisplayCooperResult
-          distance = { this.state.distance }
-          gender = { this.state.gender }
-          age = { this.state.age }
-          authenticated={ this.state.authenticated }
-          entrySaved = { this.state.entrySaved }
-          entryHandler = { this.entryHandler.bind(this) }
-        />
 
         <div>
-          {performanceDataIndex}
-        </div>
-
-        <div>
-          {renderChart}
-        </div>
-
-        <div>
-          { renderLogin }
+          
         </div>
       </>
     );
