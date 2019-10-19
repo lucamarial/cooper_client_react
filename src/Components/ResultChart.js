@@ -3,9 +3,12 @@ import { getData } from '../Modules/PerformanceData'
 import { Line } from 'react-chartjs-2'
 
 class ResultChart extends Component {
-  state = {
-    performanceData: null
+  constructor(props) {
+    super(props)
+    this.state = {
+      performanceData: null
   }
+}
 
   componentDidMount() {
     this.getPerformanceData()
@@ -24,17 +27,21 @@ class ResultChart extends Component {
       this.getPerformanceData();
     }
     if (this.state.performanceData != null) {
+
         const distances = []
         const labels = []
+
         this.state.performanceData.forEach(item => {
           distances.push(item.data.distance)
           labels.push(item.data.message)
         })
+
         const data = {
           datasets: [
             {
-              label: 'My First dataset',
-              fill: false,
+              data: distances,
+              label: 'My Performance',
+              fill: true,
               lineTension: 0.1,
               backgroundColor: 'rgba(75,192,192,0.4)',
               borderColor: 'rgba(75,192,192,1)',
@@ -51,10 +58,8 @@ class ResultChart extends Component {
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
-              data: distances
             }
-          ],
-          labels: labels,
+          ], labels: labels
         }
         dataChart = (
           <Line data={data} />
