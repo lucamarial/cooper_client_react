@@ -3,26 +3,43 @@ import DisplayCooperResult from './Components/DisplayCooperResult';
 import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
+import DisplayPerformanceData from './Components/DisplayPerformanceData';
+import ResultChart from './Components/ResultChart';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      distance: '',
-      gender: 'female',
-      age: '',
-      renderLoginForm: false,
-      authenticated: false,
-      email: '',
-      password: '',
-      message: ''
-    }
+  state = {
+    distance: '',
+    gender: 'female',
+    age: '',
+    renderLoginForm: false,
+    authenticated: false,
+    email: '',
+    password: '',
+    message: '',
+    entrySaved: false,
+    renderIndex: false,
+    updateIndex: false,
+    renderResultChart: false,
+    updateResultChart: false
   }
 
   onChange(event) {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
+      entrySaved: false
     })
+  }
+
+  entryHandler() {
+    this.setState({ entrySaved: true, updateIndex: true, updateResultChart: true });
+  }
+
+  indexUpdated() {
+    this.setState({ updateIndex: false });
+  }
+
+  resultChartUpdated() {
+    this.setState({ updateResultChart: false})
   }
 
   async onLogin(e) {
@@ -38,12 +55,44 @@ class App extends Component {
   render() {
     let renderLogin;
     let user;
+    let performanceDataIndex;
+    let renderChart;
 
     if (this.state.authenticated === true) {
       user = JSON.parse(sessionStorage.getItem('credentials')).uid;
       renderLogin = (
         <p>Hi {user}</p>
       )
+      if (this.state.renderIndex === true) {
+        performanceDataIndex = (
+          <>
+            <DisplayPerformanceData
+              updateIndex = { this.state.updateIndex }
+              indexUpdated = { this.indexUpdated.bind(this) }
+            />
+            <button id="show-index" onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
+          </>
+        )
+      } else {
+        performanceDataIndex = (
+          <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
+        )
+      }
+      if (this.state.renderResultChart === true) {
+        renderChart = (
+          <>
+            <ResultChart
+              updateResultChart = { this.state.updateResultChart }
+              resultChartUpdated = { this.resultChartUpdated.bind(this) }
+            />
+            <button id="show-chart" onClick={() => this.setState({ renderResultChart: false })}>Hide Chart</button>
+          </>
+        )
+      } else {
+        renderChart = (
+          <button id="show-chart" onClick={() => this.setState({ renderResultChart: true})}>Show Chart</button>
+        )
+      }
     } else { 
       if (this.state.renderLoginForm === true) {
         renderLogin = (
@@ -74,9 +123,19 @@ class App extends Component {
           distance = { this.state.distance }
           gender = { this.state.gender }
           age = { this.state.age }
+          authenticated={ this.state.authenticated }
+          entrySaved = { this.state.entrySaved }
+          entryHandler = { this.entryHandler.bind(this) }
         />
+
+        {performanceDataIndex}
+
         <div>
-        { renderLogin }
+          {renderChart}
+        </div>
+
+        <div>
+          { renderLogin }
         </div>
       </>
     );
