@@ -4,6 +4,7 @@ import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
 import DisplayPerformanceData from './Components/DisplayPerformanceData';
+import ResultChart from './Components/ResultChart';
 
 class App extends Component {
   state = {
@@ -17,7 +18,9 @@ class App extends Component {
     message: '',
     entrySaved: false,
     renderIndex: false,
-    updatedIndex: false
+    updateIndex: false,
+    renderResultChart: false,
+    updateResultChart: false
   }
 
   onChange(event) {
@@ -25,6 +28,18 @@ class App extends Component {
       [event.target.id]: event.target.value,
       entrySaved: false
     })
+  }
+
+  entryHandler() {
+    this.setState({ entrySaved: true, updateIndex: true, updateResultChart: true });
+  }
+
+  indexUpdated() {
+    this.setState({ updateIndex: false });
+  }
+
+  resultChartUpdated() {
+    this.setState({ updateResultChart: false})
   }
 
   async onLogin(e) {
@@ -37,18 +52,11 @@ class App extends Component {
     }
   }
 
-  entryHandler() {
-    this.setState({ entrySaved: true, updateIndex: true });
-  }
-
-  indexUpdated() {
-    this.setState({ updateIndex: false });
-  }
-
   render() {
     let renderLogin;
     let user;
     let performanceDataIndex;
+    let renderChart;
 
     if (this.state.authenticated === true) {
       user = JSON.parse(sessionStorage.getItem('credentials')).uid;
@@ -68,6 +76,21 @@ class App extends Component {
       } else {
         performanceDataIndex = (
           <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
+        )
+      }
+      if (this.state.renderResultChart === true) {
+        renderChart = (
+          <>
+            <ResultChart
+              updateResultChart = { this.state.updateResultChart }
+              resultChartUpdated = { this.resultChartUpdated.bind(this) }
+            />
+            <button id="show-chart" onClick={() => this.setState({ renderResultChart: false })}>Hide Chart</button>
+          </>
+        )
+      } else {
+        renderChart = (
+          <button id="show-chart" onClick={() => this.setState({ renderResultChart: true})}>Show Chart</button>
         )
       }
     } else { 
@@ -104,9 +127,15 @@ class App extends Component {
           entrySaved = { this.state.entrySaved }
           entryHandler = { this.entryHandler.bind(this) }
         />
+
         {performanceDataIndex}
+
         <div>
-        { renderLogin }
+          {renderChart}
+        </div>
+
+        <div>
+          { renderLogin }
         </div>
       </>
     );
