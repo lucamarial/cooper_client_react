@@ -35,11 +35,29 @@ class ResultChart extends Component {
           distances.push(item.data.distance)
           labels.push(item.data.message)
         })
+
         const data = {
           datasets: [
             {
               data: distances,
-              label: 'My First dataset',
+              label: 'My Performance',
+              fill: true,
+              lineTension: 0.1,
+              backgroundColor: 'rgba(75,192,192,0.4)',
+              borderColor: 'rgba(75,192,192,1)',
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: 'rgba(75,192,192,1)',
+              pointBackgroundColor: '#fff',
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+              pointHoverBorderColor: 'rgba(220,220,220,1)',
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
             }
           ], labels: labels
         }
