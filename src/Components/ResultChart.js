@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { getData } from '../Modules/PerformanceData'
 import { Line } from 'react-chartjs-2'
 
-export default class ResultChart extends Component {
+class ResultChart extends Component {
   state = {
     performanceData: null
   }
@@ -17,9 +18,51 @@ export default class ResultChart extends Component {
     })
   }
   render() {
+    let dataChart;
+
+    if (this.props.updateResultChart === true) {
+      this.getPerformanceData();
+    }
+    if (this.state.performanceData != null) {
+        const distances = []
+        const labels = []
+        this.state.performanceData.forEach(item => {
+          distances.push(item.data.distance)
+          labels.push(item.data.message)
+        })
+        const data = {
+          datasets: [
+            {
+              label: 'My First dataset',
+              fill: false,
+              lineTension: 0.1,
+              backgroundColor: 'rgba(75,192,192,0.4)',
+              borderColor: 'rgba(75,192,192,1)',
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: 'rgba(75,192,192,1)',
+              pointBackgroundColor: '#fff',
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+              pointHoverBorderColor: 'rgba(220,220,220,1)',
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: distances
+            }
+          ],
+          labels: labels,
+        }
+        dataChart = (
+          <Line data={data} />
+        )
+    }
     return (
       <div>
-        
+        {dataChart}
       </div>
     )
   }
