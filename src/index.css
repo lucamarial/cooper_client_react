@@ -49,8 +49,8 @@ code {
   color: #444;
   line-height: 1;
   padding: .6em 1.4em .5em .8em;
-  width: 86.8%;
-  max-width: 100%; 
+  width: 203.38px;
+  max-width: 203.38px; 
   box-sizing: border-box;
   margin-top: 10px;
   margin-left: 5px;
@@ -86,4 +86,9 @@ code {
 
 #gender::-ms-expand {
   display: none;
+}
+
+#submit {
+  margin-left: 6px;
+  margin-top: 10px!important;
 }

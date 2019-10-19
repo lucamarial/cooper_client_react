@@ -5,11 +5,11 @@ const InputFields = (props) => {
   return (
   <>
     <div id="input">
-      <Input icon="users" iconPosition="left" id="distance" placeholder="Distance" onChange={props.inputChangeHandler}/>
+      <Input icon="map" iconPosition="left" id="distance" placeholder="Distance" onChange={props.inputChangeHandler}/>
     </div>
 
     <div id="input">
-      <Input icon="users" iconPosition="left" id="age" placeholder="Age" onChange={props.inputChangeHandler}/>
+      <Input icon="blind" iconPosition="left" id="age" placeholder="Age" onChange={props.inputChangeHandler}/>
     </div>
 
     <select id="gender" onChange={props.inputChangeHandler}>

@@ -106,7 +106,8 @@ class App extends Component {
           Cooper Test
         </Header>
         <Grid centered columns={2}>
-          
+
+          <Grid.Row>
           <Grid.Column>
             <Container id="container">
               <Card>
@@ -149,12 +150,15 @@ class App extends Component {
               </Card> 
             </Container>
           </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <div>
+              { renderLogin }
+            </div>
+          </Grid.Row>
                   
           </Grid>
 
-        <div>
-          { renderLogin }
-        </div>
       </Container>
     );
   }
