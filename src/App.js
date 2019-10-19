@@ -69,12 +69,12 @@ class App extends Component {
               updateIndex = { this.state.updateIndex }
               indexUpdated = { this.indexUpdated.bind(this) }
             />
-            <button id="show-index" onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
+            <Button id="show-index" onClick={() => this.setState({ renderIndex: false })}>Hide past entries</Button>
           </>
         )
       } else {
         performanceDataIndex = (
-          <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
+          <Button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</Button>
         )
       }
     } else { 
@@ -100,6 +100,7 @@ class App extends Component {
     return (
       <Container>
         <Header
+          id="h1"
           as="h1"
           textAlign="center"
         >
