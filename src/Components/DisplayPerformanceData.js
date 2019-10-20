@@ -6,8 +6,8 @@ class DisplayPerformanceData extends Component {
     super(props)
     this.state = {
       performanceData: null
+    }
   }
-}
 
   componentDidMount() {
     this.getPerformanceData()

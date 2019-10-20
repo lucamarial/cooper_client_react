@@ -114,8 +114,8 @@ class App extends Component {
       } else {
         renderLogin = (
           <>
-              <Button id="login" onClick={ () => this.setState({ renderLoginForm: true }) }>Login</Button>
-              <p>{this.state.message}</p>
+            <Button id="login" onClick={ () => this.setState({ renderLoginForm: true }) }>Login</Button>
+            <p>{this.state.message}</p>
           </>
         )
       }
@@ -123,76 +123,74 @@ class App extends Component {
     
     return (
       <>
-      <Container>
-        <Header
-          id="h1"
-          as="h1"
-          textAlign="center"
-        >
-          Cooper Test
-        </Header>
-        <Grid centered columns={2}>
-
-          <Grid.Row>
-          <Grid.Column>
-            <Container id="container">
-              <Card>
-                <Card.Content>
-                  <Card.Header>Calculator</Card.Header>
-                  <Card.Description>
-                    Input data and get your result!
-                  </Card.Description>
-                  <InputFields
-                    inputChangeHandler={this.onChange.bind(this)}
-                  />
-                </Card.Content>
-
-                <Card.Content>
-                  <Icon id="heart" name='heartbeat' />
-                  <DisplayCooperResult
-                    distance = { this.state.distance }
-                    gender = { this.state.gender }
-                    age = { this.state.age }
-                    authenticated={ this.state.authenticated }
-                    entrySaved = { this.state.entrySaved }
-                    entryHandler = { this.entryHandler.bind(this) }
-                  />
-                </Card.Content>
-              </Card>
-            </Container>
-          </Grid.Column>
-
-          <Grid.Column>
-            <Container id="container">
-              <Card>
-                <Card.Content>
-                  <Card.Header>
-                    Past Results
-                  </Card.Header>
-                  <Card.Description>
-                    {performanceDataIndex}
-                  </Card.Description>
-                </Card.Content>
-              </Card> 
-            </Container>
-          </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <div>
-              { renderLogin }
-            </div>
-          </Grid.Row>
         <Container>
-          <Grid.Row>
-            {renderChart}  
-          </Grid.Row> 
-          </Container>
-          </Grid>
-      </Container>
+          <Header
+            id="h1"
+            as="h1"
+            textAlign="center"
+          >
+            Cooper Test
+          </Header>
 
-        <div>
-          
-        </div>
+          <Grid centered columns={2}>
+            <Grid.Row>
+              <Grid.Column>
+                <Container id="container">
+                  <Card>
+                    <Card.Content>
+                      <Card.Header>Calculator</Card.Header>
+                      <Card.Description>
+                        Input data and get your result!
+                      </Card.Description>
+                      <InputFields
+                        inputChangeHandler={this.onChange.bind(this)}
+                      />
+                    </Card.Content>
+
+                    <Card.Content>
+                      <Icon id="heart" name='heartbeat' />
+                      <DisplayCooperResult
+                        distance = { this.state.distance }
+                        gender = { this.state.gender }
+                        age = { this.state.age }
+                        authenticated={ this.state.authenticated }
+                        entrySaved = { this.state.entrySaved }
+                        entryHandler = { this.entryHandler.bind(this) }
+                      />
+                    </Card.Content>
+                  </Card>
+                </Container>
+              </Grid.Column>
+
+              <Grid.Column>
+                <Container id="container">
+                  <Card>
+                    <Card.Content>
+                      <Card.Header>
+                        Past Results
+                      </Card.Header>
+                      <Card.Description>
+                        {performanceDataIndex}
+                      </Card.Description>
+                    </Card.Content>
+                  </Card> 
+                </Container>
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row>
+              <div>
+                { renderLogin }
+              </div>
+            </Grid.Row>
+
+            <Container>
+              <Grid.Row>
+                {renderChart}  
+              </Grid.Row> 
+            </Container>
+          </Grid>
+        </Container>
       </>
     );
   }
