@@ -17,7 +17,7 @@ describe('User can sign up', () => {
       }
     })
     cy.get('#signup').click();
-    cy.get('#signup-form').within(() => {
+    cy.get('#login-form').within(() => {
       cy.get('#email').type('john@doe.com')
       cy.get('#password').type('password')
       cy.get('#password-confirmation').type('password')
@@ -41,7 +41,7 @@ describe('User can sign up', () => {
       }
     })
     cy.get('#signup').click();
-    cy.get('#signup-form').within(() => {
+    cy.get('#login-form').within(() => {
       cy.get('#email').type('john@doe.com')
       cy.get('#password').type('password')
       cy.get('#password-confirmation').type('wrong_password')
