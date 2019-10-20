@@ -20,9 +20,11 @@ class App extends Component {
     gender: 'female',
     age: '',
     renderLoginForm: false,
+    renderSignUpForm: false,
     authenticated: false,
     email: '',
     password: '',
+    password_confirmation: '',
     message: '',
     entrySaved: false,
     renderIndex: false,
@@ -60,11 +62,22 @@ class App extends Component {
     }
   }
 
+  async onSignUp(e) {
+    e.preventDefault();
+    let resp = await authenticateSignUp(this.state.email, this.state.password, this.state.password_confirmation)
+    if (resp.authenticated === true) {
+      this.setState({ authenticated: true });
+    } else {
+      this.setState({ message: resp.message, renderSignUpForm: false })
+    }
+  }
+
   render() {
     let renderLogin;
     let user;
     let performanceDataIndex;
     let renderChart;
+    let renderSignUp;
 
     if (this.state.authenticated === true) {
       user = JSON.parse(sessionStorage.getItem('credentials')).uid;
@@ -119,7 +132,24 @@ class App extends Component {
           </>
         )
       }
+      if (this.state.renderSignUpForm === true) {
+        renderSignUp = (
+          <>
+            <SignUpForm 
+              loginHandler={this.onLogin.bind(this)}
+              inputChangeHandler={this.onChange.bind(this)}
+            />
+          </>
+        )
+      } else {
+        renderSignUp = (
+        <>
+          <Button id="signup" onClick={ () => this.setState({ renderSignUpForm: true }) }>Sign Up</Button>
+          <p>{this.state.message}</p>
+        </>
+      )
     }
+  }
     
     return (
       <>
@@ -181,6 +211,10 @@ class App extends Component {
             <Grid.Row>
               <div>
                 { renderLogin }
+              </div>
+
+              <div>
+                { renderSignUp }
               </div>
             </Grid.Row>
 

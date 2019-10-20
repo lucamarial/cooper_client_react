@@ -14,6 +14,18 @@ const authenticate = async (email, password) => {
   }
 };
 
+const authenticateSignUp = async (email, password, password_confirmation) => {
+  const path = apiUrl + '/auth';
+  try {
+    let response = await axios.post(path, { email: email, password: password, password_confirmation: password_confirmation })
+    await storeAuthCredentials(response)
+    sessionStorage.setItem('current_user', JSON.stringify({ id: response.data.data.id }));
+    return { authenticated: true }
+  } catch (error) {
+    return { authenticated: false, message: error.response.data.errors[0] }
+  }
+};
+
 const storeAuthCredentials = ({ data, headers }) => {
   return new Promise((resolve) => {
     const uid = headers['uid'],
@@ -32,4 +44,4 @@ const storeAuthCredentials = ({ data, headers }) => {
   })
 };
 
-export { authenticate, storeAuthCredentials }
+export { authenticate, storeAuthCredentials, authenticateSignUp }
