@@ -1,3 +1,26 @@
+# Cooper Test Calculator
+
+## Sources
+- https://github.com/jerairrest/react-chartjs-2 
+  Used for documentation and implementation of chartjs into react client
+- https://github.com/amandagibson/CooperClient/blob/master/src/Components/DisplayCooperGraph.js
+  Used for implementation partly for implementation of chartjs into react client
+- https://css-tricks.com/styling-a-select-like-its-2019/
+  Used for implementing styling for selector
+
+## Questions (Answers)
+  - Where are we doing the calculation?
+    We are doing the calculations in the modules in the react client and implementing them in the components. 
+  - Where do we check the result of the Cooper test. On the client or on the server?
+    We retrieve the results from the API (server) but check the results on the client side (react), in the displayCooperResult component, and display them using the DisplayPerformanceData, and displayResultChart components.
+  - What are the pros and cons of doing it that way?
+    Pros: 
+      - It puts less load on the server and allows for more users to access their results faster due to putting less load on the server since all the server is doing is fetching the data rather than performing the calculations and retrieving the results to be displayed.
+      - It also reduces the wait time for the user since it doesn't need to wait for a response from the server before re-rendering the page with updated information, improving the user experience.
+      - As technology develops, it will be more and more useful to write client based applications as the client-side scripting continues to become more powerful, simple and flexible.
+    Cons:
+      - Also, if the calculations were to be done on the server side, depending on the calculation magnitude, if we have powerful servers with high computing power, calculations would be made faster and more effectively if done on the server side but would be more expensive to implement and maintain. However, it is not necessary for this small of an application and thus is more efficient in implementing on the client side.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +89,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
