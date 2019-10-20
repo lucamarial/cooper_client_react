@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CooperCalculator from '../Modules/CooperCalculator';
 import { saveData } from '../Modules/PerformanceData';
+import { Button } from 'semantic-ui-react'
 
 class DisplayCooperResult extends Component {
 
@@ -10,8 +11,13 @@ class DisplayCooperResult extends Component {
 
   async saveCooperData() {
     const result = this.calculate();
+    const values = {
+      gender: this.props.gender,
+      distance: this.props.distance,
+      age: this.props.age
+    }
     try {
-      await saveData(result);
+      await saveData(result, values);
       this.props.entryHandler();
     } catch(error) {
       console.log(error);
@@ -25,7 +31,7 @@ class DisplayCooperResult extends Component {
     if (this.props.authenticated === true && this.props.entrySaved === false) {
       saveButton = (
         <>
-          <button id="save-result" onClick={this.saveCooperData.bind(this)}>Save entry</button>
+          <Button id="save-result" onClick={this.saveCooperData.bind(this)}>Save entry</Button>
         </>
       )
     } else if (this.props.authenticated === true && this.props.entrySaved === true) {
