@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import DisplayCooperResult from './Components/DisplayCooperResult';
 import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
-import { authenticate } from './Modules/Auth';
+import { authenticate, authenticateSignUp } from './Modules/Auth';
 import DisplayPerformanceData from './Components/DisplayPerformanceData';
 import ResultChart from './Components/ResultChart';
+import SignUpForm from './Components/SignUpForm';
 import {
   Container,
   Grid,
@@ -25,7 +26,8 @@ class App extends Component {
     email: '',
     password: '',
     password_confirmation: '',
-    message: '',
+    lmessage: '',
+    smessage: '',
     entrySaved: false,
     renderIndex: false,
     updateIndex: false,
@@ -58,7 +60,7 @@ class App extends Component {
     if (resp.authenticated === true) {
       this.setState({ authenticated: true });
     } else {
-      this.setState({ message: resp.message, renderLoginForm: false })
+      this.setState({ lmessage: resp.message, renderLoginForm: false })
     }
   }
 
@@ -68,7 +70,7 @@ class App extends Component {
     if (resp.authenticated === true) {
       this.setState({ authenticated: true });
     } else {
-      this.setState({ message: resp.message, renderSignUpForm: false })
+      this.setState({ smessage: resp.message, renderSignUpForm: false })
     }
   }
 
@@ -128,7 +130,7 @@ class App extends Component {
         renderLogin = (
           <>
             <Button id="login" onClick={ () => this.setState({ renderLoginForm: true }) }>Login</Button>
-            <p>{this.state.message}</p>
+            <p>{this.state.lmessage}</p>
           </>
         )
       }
@@ -136,7 +138,7 @@ class App extends Component {
         renderSignUp = (
           <>
             <SignUpForm 
-              loginHandler={this.onLogin.bind(this)}
+              signupHandler={this.onSignUp.bind(this)}
               inputChangeHandler={this.onChange.bind(this)}
             />
           </>
@@ -145,7 +147,7 @@ class App extends Component {
         renderSignUp = (
         <>
           <Button id="signup" onClick={ () => this.setState({ renderSignUpForm: true }) }>Sign Up</Button>
-          <p>{this.state.message}</p>
+          <p>{this.state.smessage}</p>
         </>
       )
     }
