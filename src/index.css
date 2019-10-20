@@ -25,20 +25,12 @@ code {
   margin: 5px;
 }
 
-/* div.column {
-  position: absolute;
-  left: 42.5%;
-  margin-right: -50%;
-  transform: translate(-50%);
-} */
+#calculator {
+  margin-left: 260px;
+}
 
-/* div.ui.card {
-  margin-right: 20px;
-  margin-left: 20px;
-} */
-
-#container {
-  padding-left: 25%;
+#results {
+  margin-left: 30px;
 }
 
 #gender {
@@ -100,4 +92,18 @@ code {
 #h1 {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+#cancel {
+  background-color: rgb(145, 149, 149)!important;
+  color: white!important;
+}
+
+#login_box {
+  margin-right: 0px;
+  margin-left: 25px;
+}
+
+#signup_box {
+  margin-left: 50px;
 }

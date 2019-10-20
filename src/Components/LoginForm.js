@@ -16,6 +16,8 @@ const LoginForm = (props) => {
             </div>
             
             <Button id="submit" onClick={ (e) => props.loginHandler(e) }>Submit</Button>
+
+            <Button id="cancel" onClick= { () => props.cancelHandler() }>Cancel</Button>
           </form>
       </Card.Content>
     </Card>

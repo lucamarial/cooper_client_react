@@ -51,7 +51,15 @@ class App extends Component {
   }
 
   resultChartUpdated() {
-    this.setState({ updateResultChart: false})
+    this.setState({ updateResultChart: false })
+  }
+
+  cancelLogin() {
+    this.setState({ renderLoginForm: false })
+  }
+
+  cancelSignup() {
+    this.setState({ renderSignUpForm: false })
   }
 
   async onLogin(e) {
@@ -123,6 +131,7 @@ class App extends Component {
           <LoginForm 
             loginHandler={this.onLogin.bind(this)}
             inputChangeHandler={this.onChange.bind(this)}
+            cancelHandler={this.cancelLogin.bind(this)}
           />
         </>
         )
@@ -140,6 +149,7 @@ class App extends Component {
             <SignUpForm 
               signupHandler={this.onSignUp.bind(this)}
               inputChangeHandler={this.onChange.bind(this)}
+              cancelHandler={this.cancelSignup.bind(this)}
             />
           </>
         )
@@ -168,7 +178,7 @@ class App extends Component {
             <Grid.Row>
               <Grid.Column>
                 <Container id="container">
-                  <Card>
+                  <Card id="calculator">
                     <Card.Content>
                       <Card.Header>Calculator</Card.Header>
                       <Card.Description>
@@ -196,7 +206,7 @@ class App extends Component {
 
               <Grid.Column>
                 <Container id="container">
-                  <Card>
+                  <Card id="results">
                     <Card.Content>
                       <Card.Header>
                         Past Results
@@ -211,11 +221,11 @@ class App extends Component {
             </Grid.Row>
 
             <Grid.Row>
-              <div>
+              <div id="login_box">
                 { renderLogin }
               </div>
 
-              <div>
+              <div id="signup_box">
                 { renderSignUp }
               </div>
             </Grid.Row>
