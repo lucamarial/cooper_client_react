@@ -4,23 +4,18 @@ describe('User can sign up', () => {
     cy.server();
     cy.route({
       method: 'POST',
-      url: 'https://cooperdl.herokuapp.com/api/v1/auth/sign_up',
+      url: 'http://localhost:3000/api/v1/auth',
       status: "200",
-      response: {
-        "status": [
-          "success"
-        ],
-        "success": true
-      },
+      response: 'fixture:login.json',
       headers: {
         "uid": "john@doe.com"
       }
     })
     cy.get('#signup').click();
-    cy.get('#signup-form').within(() => {
+    cy.get('#login-form').within(() => {
       cy.get('#email').type('john@doe.com')
       cy.get('#password').type('password')
-      cy.get('#password-confirmation').type('password')
+      cy.get('#password_confirmation').type('password')
       cy.get('button').click()
     })
     cy.contains('Hi john@doe.com')
@@ -31,20 +26,20 @@ describe('User can sign up', () => {
     cy.server();
     cy.route({
       method: 'POST',
-      url: 'https://cooperdl.herokuapp.com/api/v1/auth/sign_up',
+      url: 'http://localhost:3000/api/v1/auth',
       status: "422",
       response: {
         "errors": [
-          "password_confirmation"
+          "doesn't match Password"
         ],
         "success": false
       }
     })
     cy.get('#signup').click();
-    cy.get('#signup-form').within(() => {
+    cy.get('#login-form').within(() => {
       cy.get('#email').type('john@doe.com')
       cy.get('#password').type('password')
-      cy.get('#password-confirmation').type('wrong_password')
+      cy.get('#password_confirmation').type('wrong_password')
       cy.get('button').click()
     })
     cy.contains("doesn't match Password")
