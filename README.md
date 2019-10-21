@@ -21,6 +21,16 @@
     Cons:
       - Also, if the calculations were to be done on the server side, depending on the calculation magnitude, if we have powerful servers with high computing power, calculations would be made faster and more effectively if done on the server side but would be more expensive to implement and maintain. However, it is not necessary for this small of an application and thus is more efficient in implementing on the client side.
 
+  ## Screenshots
+  <img width="1428" alt="Screenshot 2019-10-21 at 09 18 15" src="https://user-images.githubusercontent.com/53824850/67184580-5d9a5800-f3e4-11e9-9131-8d9fa74c641c.png">
+  =======================================================================
+  <img width="1415" alt="Screenshot 2019-10-21 at 09 18 29" src="https://user-images.githubusercontent.com/53824850/67184600-6559fc80-f3e4-11e9-9a65-09f250b8cfd7.png">
+  =======================================================================
+  <img width="1423" alt="Screenshot 2019-10-21 at 09 18 54" src="https://user-images.githubusercontent.com/53824850/67184592-62f7a280-f3e4-11e9-8fa0-cdfa0b639e24.png">
+  =======================================================================
+  <img width="1431" alt="Screenshot 2019-10-21 at 09 19 24" src="https://user-images.githubusercontent.com/53824850/67184584-5f641b80-f3e4-11e9-99b2-66cd91a1a0c3.png">
+  =======================================================================
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
